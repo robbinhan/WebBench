@@ -1,5 +1,5 @@
 CFLAGS?=	-Wall -ggdb -W -O
-CC?=		gcc
+CC?=		clang
 LIBS?=
 LDFLAGS?=
 PREFIX?=	/usr/local/webbench
@@ -26,7 +26,7 @@ install: webbench
 	install -m 644 debian/changelog $(DESTDIR)$(PREFIX)/share/doc/webbench
 
 webbench: webbench.o Makefile
-	$(CC) $(CFLAGS) $(LDFLAGS) -o webbench webbench.o $(LIBS) 
+	$(CC) $(CFLAGS) -I/usr/include/tirpc $(LDFLAGS) -o webbench webbench.o $(LIBS) 
 
 clean:
 	-rm -f *.o webbench *~ core *.core tags

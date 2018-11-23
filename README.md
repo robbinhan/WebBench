@@ -11,7 +11,8 @@ ctags
   
 ## 命令行选项：
 
-
+### Archlinux
+`clang -I /usr/include/tirpc webbench.c -o webbench`
 
 
 | 短参        | 长参数           | 作用   |

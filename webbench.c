@@ -19,7 +19,7 @@
 #include "socket.c"
 #include <unistd.h>
 #include <sys/param.h>
-#include <rpc/types.h>
+#include <tirpc/rpc/types.h>
 #include <getopt.h>
 #include <strings.h>
 #include <time.h>
@@ -129,6 +129,7 @@ int main(int argc, char *argv[])
             case 't': benchtime=atoi(optarg);break;	     
             case 'p': 
             /* proxy server parsing server:port */
+            // optarg的值是代表解析到的参数的值
             tmp=strrchr(optarg,':');
             proxyhost=optarg;
             if(tmp==NULL)
@@ -154,6 +155,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    // optind表示下一位argv的索引值，如果和argc一致，说明已经没有参数，但是url还没取到，所以报错
     if(optind==argc) {
         fprintf(stderr,"webbench: Missing URL!\n");
         usage();
@@ -168,6 +170,7 @@ int main(int argc, char *argv[])
             "Copyright (c) Radim Kolar 1997-2004, GPL Open Source Software.\n"
             );
  
+    // 传入url，构造request字符串数组
     build_request(argv[optind]);
  
     // print request info ,do it in function build_request
